@@ -11,7 +11,6 @@ def home():
 
 @app.route('/edges', methods=['GET', 'POST'])
 def edges_handler():
-    print(request.files)
     fns = {
         'GET': edges.welcome,
         'POST': edges.image,
