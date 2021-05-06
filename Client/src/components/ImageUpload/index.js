@@ -6,21 +6,25 @@ function ImageUpload() {
     const [image, setImage] = useState("")
 
     const updateImage = e => {
-        console.log(e)
         const input = URL.createObjectURL(e.target.files[0])
-        console.log(input)
         setImage(input)
-        console.log(image)
+        let formData = new FormData();
+        formData.append("image", image);
+        axios.post('http://localhost:5000/edges', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 
     return (
         <>
-        <form role="form">
-            <label>
-                <input type="file" onChange={updateImage} />
-            </label>
-        </form>
-        <img src={image}/>
+            <form role="form">
+                <label>
+                    <input type="file" onChange={updateImage} />
+                </label>
+            </form>
+            <img src={image} />
         </>
     );
 };
