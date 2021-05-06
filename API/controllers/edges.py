@@ -30,4 +30,6 @@ def vertical_edges(image):
                 print(pixel_kernel)
             value = np.sum(pixel_kernel * vertical_sobel)
             new_image[i, j] = value
+    new_image = np.clip(new_image, 0, 255)
+    print(new_image)
     return new_image
