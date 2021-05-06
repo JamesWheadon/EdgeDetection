@@ -5,7 +5,6 @@ def welcome(req):
 
 def image(req):
     image = req.files.to_dict()['image']
-    img = Image.open(image)
-    print(img.size)
+    img = Image.open(image).convert('LA')
     img.show()
     return "Recieved image", 201
