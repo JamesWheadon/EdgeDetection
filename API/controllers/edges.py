@@ -20,10 +20,14 @@ def vertical_edges(image):
     vertical_sobel = np.array([[1, 0, -1], [2, 0, -2], [1, 0, -1]])
     width, height = image.size
     new_image = np.zeros((width, height))
+    print(width, height)
+    print(pixels.shape)
     for i in range(1, width-1):
         for j in range(1, height-1):
-            pixel_kernel = pixels[i-1 : i+2, j-1 : j+2]
-            print(pixel_kernel)
+            pixel_kernel = pixels[j-1 : j+2, i-1 : i+2]
+            if (pixel_kernel.size != 9):
+                print(i, j)
+                print(pixel_kernel)
             value = np.sum(pixel_kernel * vertical_sobel)
             new_image[i, j] = value
     return new_image
