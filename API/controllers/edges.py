@@ -14,9 +14,7 @@ def image(req):
     both_edges = np.clip(both_edges.astype(int), 0, 255)
     both_edges = np.flip(np.rot90(both_edges), 0)
     edges_image = Image.fromarray(np.uint8(both_edges))
-    edges_image.show()
-    edges_image.save('filteredImage.jpg')
-    return "Recieved image", 201
+    return both_edges.tolist(), 201
 
 def vertical_edges(image):
     pixels = np.array(image)
@@ -26,9 +24,6 @@ def vertical_edges(image):
     for i in range(1, width-1):
         for j in range(1, height-1):
             pixel_kernel = pixels[j-1 : j+2, i-1 : i+2]
-            if (pixel_kernel.size != 9):
-                print(i, j)
-                print(pixel_kernel)
             value = np.sum(pixel_kernel * vertical_sobel)
             new_image[i, j] = value
     new_image = np.clip(new_image, 0, 255)
@@ -42,9 +37,6 @@ def horizontal_edges(image):
     for i in range(1, width-1):
         for j in range(1, height-1):
             pixel_kernel = pixels[j-1 : j+2, i-1 : i+2]
-            if (pixel_kernel.size != 9):
-                print(i, j)
-                print(pixel_kernel)
             value = np.sum(pixel_kernel * horizontal_sobel)
             new_image[i, j] = value
     new_image = np.clip(new_image, 0, 255)

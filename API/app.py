@@ -1,9 +1,12 @@
 from controllers import edges
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, send_file, request
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
+
+app.config['UPLOAD_FOLDER'] = '/images'
 
 @app.route('/')
 def home():
@@ -16,7 +19,6 @@ def edges_handler():
         'POST': edges.image,
     }
     resp, code = fns[request.method](request)
-
     return jsonify(resp), code
 
 if __name__ == "__main__":
