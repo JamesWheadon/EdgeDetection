@@ -2,6 +2,8 @@
 
 Carries out edge detection on an image, sending the image to a Flask API which uses numpy to carry out edge detection on the image, sending back the pixel intensities to the client to be rendered in a canvas element.
 
+![Example image of filter](API/filteredImage.jpg)
+
 ## Installation and Usage
 - Clone or download this repo
 - Navigate to root directory of this repository
