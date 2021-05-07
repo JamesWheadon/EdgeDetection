@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import { Canvas } from '../'
 
 function ImageUpload() {
 
@@ -18,25 +19,6 @@ function ImageUpload() {
         })
         setPixels(data.data)
     }
-    const canvasRef = useRef()
-
-    const renderCanvas = () => {
-        if (pixels.length != 0) {
-            console.log(pixels)
-            return (
-                <canvas height={pixels.length} width={pixels[0].length} ref={canvasRef}/>
-            )
-        }
-    }
-
-    const renderProcessedImage = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext("2d");
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        const id = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
-        const canvasPixels = id.data;
-        print(canvasPixels)
-    }
 
     return (
         <>
@@ -46,7 +28,7 @@ function ImageUpload() {
                 </label>
             </form>
             <img src={image} />
-            {pixels.length != 0 ? [renderCanvas(), renderProcessedImage()] : null}
+            {pixels.length != 0 ? <Canvas pixels={pixels}/> : null}
         </>
     );
 };
