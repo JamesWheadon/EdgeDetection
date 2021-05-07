@@ -13,7 +13,6 @@ def image(req):
     both_edges = np.sqrt((np.square(v_edges) + np.square(h_edges)))
     both_edges = np.clip(both_edges.astype(int), 0, 255)
     both_edges = np.flip(np.rot90(both_edges), 0)
-    edges_image = Image.fromarray(np.uint8(both_edges))
     return both_edges.tolist(), 201
 
 def vertical_edges(image):

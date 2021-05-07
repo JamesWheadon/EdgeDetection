@@ -19,9 +19,6 @@ function Canvas({ pixels }) {
                 context.putImageData( id, column, row );
             }
         }
-        const test = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
-        const canvasPixels = test.data;
-        console.log(canvasPixels)
     }, [pixels])
 
     return <canvas height={pixels.length} width={pixels[0].length} ref={canvasRef} />
